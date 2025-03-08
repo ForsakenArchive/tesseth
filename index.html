@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesseth Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+      :root {
+          --primary-color: #007bff; 
+          --secondary-color: #ff0000; 
+          --background-color: #f8f9fa; 
+          --text-color: #222;
+          --nav-bg: rgba(0, 123, 255, 0.9);
+          --hover-glow: rgba(255, 0, 0, 0.6);
+          --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          --glass-effect: rgba(255, 255, 255, 0.15);
+      }
+
+      /* Reset & Fonts */
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+          background: #0d0d0d;
+          color: white;
+          overflow-x: hidden;
+          transition: box-shadow 0.3s ease-in-out;
+      }
+
+      /* Navbar */
+      .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px 50px;
+          background: linear-gradient(90deg, #1b1b1b, #2b2b2b);
+          box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.3);
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1000;
+      }
+
+      /* Logo */
+      .logo {
+          font-size: 24px;
+          font-weight: bold;
+          color: red;
+          letter-spacing: 2px;
+          transition: 0.3s;
+      }
+
+      .logo:hover {
+          color: white;
+          text-shadow: 0 0 10px red;
+      }
+
+      /* Nav Links */
+      .nav-links {
+          list-style: none;
+          display: flex;
+      }
+
+      .nav-links li {
+          margin: 0 20px;
+      }
+
+      .nav-links a {
+          text-decoration: none;
+          color: white;
+          font-size: 18px;
+          font-weight: 500;
+          position: relative;
+          transition: 0.3s;
+      }
+
+      /* Hover Effect */
+      .nav-links a::before {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -5px;
+          left: 0;
+          background: red;
+          transition: 0.4s ease;
+      }
+
+      .nav-links a:hover::before {
+          width: 100%;
+      }
+
+      .nav-links a:hover {
+          color: red;
+          text-shadow: 0 0 8px red;
+      }
+
+      /* Mobile Menu Toggle */
+      .menu-toggle {
+          display: none;
+          flex-direction: column;
+          cursor: pointer;
+      }
+
+      .menu-toggle span {
+          width: 30px;
+          height: 4px;
+          background: red;
+          margin: 5px 0;
+          transition: 0.3s;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+          .nav-links {
+              display: none;
+              flex-direction: column;
+              position: absolute;
+              top: 60px;
+              right: 0;
+              width: 200px;
+              background: rgba(0, 0, 0, 0.9);
+              box-shadow: -2px 2px 10px rgba(255, 0, 0, 0.5);
+              padding: 20px;
+          }
+
+          .nav-links.active {
+              display: flex;
+          }
+
+          .nav-links li {
+              margin: 15px 0;
+          }
+
+          .menu-toggle {
+              display: flex;
+          }
+
+          .menu-toggle.open span:nth-child(1) {
+              transform: translateY(9px) rotate(45deg);
+          }
+
+          .menu-toggle.open span:nth-child(2) {
+              opacity: 0;
+          }
+
+          .menu-toggle.open span:nth-child(3) {
+              transform: translateY(-9px) rotate(-45deg);
+          }
+      }
+
+
+      /* ================= HERO SECTION ================= */
+      .hero {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          text-align: center;
+          background: radial-gradient(circle at top, #001f3f, #000000);
+          color: white;
+          padding: 50px;
+          position: relative;
+          overflow: hidden;
+      }
+
+      /* ========== HERO BACKGROUND EFFECTS ========== */
+      .hero::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 200%;
+          height: 100%;
+          background: linear-gradient(45deg, rgba(255, 0, 0, 0.2), rgba(0, 31, 63, 0.2));
+          z-index: 1;
+          animation: pulseEffect 4s infinite alternate;
+      }
+
+      @keyframes pulseEffect {
+          0% {
+              opacity: 0.6;
+              transform: scale(1);
+          }
+          100% {
+              opacity: 1;
+              transform: scale(1.05);
+          }
+      }
+
+      /* ======== HERO TEXT ========= */
+      .hero h1 {
+          font-size: 4.5em;
+          font-weight: bold;
+          text-shadow: 4px 4px 20px rgba(255, 0, 0, 0.8);
+          letter-spacing: 3px;
+          position: relative;
+          z-index: 10;
+          background: linear-gradient(90deg, #ff0000, #ffffff);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: glitchText 1.5s infinite alternate;
+      }
+
+      @keyframes glitchText {
+          0% { text-shadow: 4px 4px 20px rgba(255, 0, 0, 0.8); }
+          50% { text-shadow: -4px -4px 20px rgba(255, 255, 255, 0.8); }
+          100% { text-shadow: 4px 4px 20px rgba(0, 31, 63, 0.8); }
+      }
+
+      .hero p {
+          font-size: 1.5em;
+          margin-top: 15px;
+          color: #ccc;
+          opacity: 0.9;
+          position: relative;
+          z-index: 10;
+          animation: fadeIn 1.8s ease-in-out;
+      }
+
+      /* ======= BUTTON DESIGN ======= */
+      .hero .btn {
+          display: inline-block;
+          margin-top: 25px;
+          padding: 15px 30px;
+          font-size: 1.3em;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: white;
+          background: linear-gradient(90deg, #ff0000, #001f3f);
+          border-radius: 50px;
+          transition: all 0.3s ease-in-out;
+          position: relative;
+          z-index: 10;
+          text-decoration: none;
+          border: 2px solid rgba(255, 0, 0, 0.6);
+          box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+      }
+
+      .hero .btn:hover {
+          transform: scale(1.1);
+          background: linear-gradient(90deg, #001f3f, #ff0000);
+          box-shadow: 0 0 25px rgba(255, 0, 0, 1);
+      }
+
+      /* ====== UNIQUE BOTTOM EDGE DESIGN ====== */
+      .hero::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 140px;
+          background: white;
+          clip-path: polygon(
+              0% 85%, 10% 92%, 20% 80%, 30% 95%, 
+              40% 83%, 50% 97%, 60% 85%, 70% 90%, 
+              80% 78%, 90% 95%, 100% 80%, 100% 100%, 0% 100%
+          );
+          z-index: 1;
+      }
+
+      /* ======= BACKGROUND PARTICLES EFFECT ======= */
+      .hero .particles {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          overflow: hidden;
+      }
+
+      .hero .particles div {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          background: rgba(255, 0, 0, 0.6);
+          border-radius: 50%;
+          animation: moveParticles 8s infinite linear;
+      }
+
+      @keyframes moveParticles {
+          0% {
+              transform: translateY(100vh) scale(0.5);
+              opacity: 1;
+          }
+          100% {
+              transform: translateY(-10vh) scale(1.2);
+              opacity: 0;
+          }
+      }
+
+      /* =========== RESPONSIVE DESIGN =========== */
+      @media (max-width: 1024px) {
+          .hero h1 { font-size: 3.8em; }
+          .hero p { font-size: 1.4em; }
+      }
+
+      @media (max-width: 768px) {
+          .hero h1 { font-size: 3.2em; }
+          .hero p { font-size: 1.3em; }
+      }
+
+      @media (max-width: 480px) {
+          .hero h1 { font-size: 2.5em; }
+          .hero p { font-size: 1.1em; }
+          .hero .btn { font-size: 1em; padding: 12px 20px; }
+      }
+
+
+      /* ========================= */
+      /*  NOVEL SECTION STYLING    */
+      /* ========================= */
+
+      .novels-section {
+          padding: 80px 50px;
+          background: #0a0a0a;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          transition: box-shadow 0.5s ease-in-out;
+      }
+
+      /* Section Title */
+      .novels-section h2 {
+          font-size: 40px;
+          font-weight: bold;
+          color: #ff002b;
+          text-shadow: 0 0 12px rgba(255, 0, 43, 0.8);
+          margin-bottom: 50px;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+      }
+
+      /* ================= */
+      /* NOVEL CARD DESIGN */
+      /* ================= */
+      .novel-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 40px;
+      }
+
+      .novel-card {
+          position: relative;
+          width: 300px;
+          height: 450px;
+          background: linear-gradient(145deg, #222, #000);
+          border-radius: 20px;
+          box-shadow: 0 10px 20px rgba(255, 0, 43, 0.3);
+          overflow: hidden;
+          cursor: pointer;
+          transition: 0.4s ease-in-out;
+          transform: perspective(1000px) rotateY(0deg);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+      }
+
+      .novel-card:hover {
+          transform: scale(1.05) rotateY(5deg);
+          box-shadow: 0 20px 30px rgba(255, 0, 43, 0.5);
+      }
+
+      /* ============== */
+      /* NOVEL IMAGES   */
+      /* ============== */
+      .novel-card img {
+          width: 100%;
+          height: 60%;
+          object-fit: cover;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          transition: 0.3s ease-in-out;
+      }
+
+
+      .novel-card:hover img {
+          filter: brightness(1.2) contrast(1.2);
+      }
+
+      /* =================== */
+      /* NOVEL CARD CONTENT */
+      /* =================== */
+      .novel-info {
+          padding: 15px;
+          text-align: left;
+          position: relative;
+          z-index: 2;
+          transition: 0.3s ease-in-out;
+      }
+
+      .novel-title {
+          font-size: 22px;
+          font-weight: bold;
+          color: #fff;
+          margin-bottom: 10px;
+          transition: 0.3s;
+      }
+
+      .novel-card:hover .novel-title {
+          color: #ff002b;
+          text-shadow: 0 0 10px rgba(255, 0, 43, 0.6);
+      }
+
+      .novel-desc {
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.7);
+          transition: 0.3s;
+      }
+
+      /* Hover Effect for Content */
+      .novel-card:hover .novel-info {
+          background: rgba(255, 0, 43, 0.1);
+          padding: 20px;
+      }
+      .novel-card h3 {
+          color: #fff;
+          font-size: 18px;
+          margin: 10px;
+          text-align: center;
+          text-transform: uppercase;
+      }
+
+      .novel-card p {
+          color: #bbb;
+          font-size: 14px;
+          margin: 0 10px;
+          text-align: center;
+          flex-grow: 1;
+      }
+
+      /* Read Now Button */
+      .read-btn {
+          display: block;
+          width: 80%;
+          margin: 10px auto 15px;
+          padding: 12px 0;
+          text-align: center;
+          font-size: 14px;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: #fff;
+          border: 2px solid rgba(255, 0, 43, 0.8);
+          border-radius: 10px;
+          background: transparent;
+          transition: 0.3s ease-in-out;
+          position: relative;
+          overflow: hidden;
+      }
+
+      /* Hover Effects */
+      .read-btn:hover {
+          background: rgba(255, 0, 43, 0.9);
+          box-shadow: 0 0 15px rgba(255, 0, 43, 0.8);
+          transform: scale(1.05);
+      }
+
+      /* Cyber Glitch Effect */
+      .read-btn::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 136, 255, 0.7);
+          transition: left 0.3s ease-in-out;
+          mix-blend-mode: screen;
+      }
+
+      .read-btn:hover::before {
+          left: 100%;
+      }
+
+      /* Flickering Effect */
+      @keyframes flicker {
+          0% { opacity: 1; }
+          50% { opacity: 0.6; }
+          100% { opacity: 1; }
+      }
+
+      .read-btn:hover {
+          animation: flicker 0.15s infinite alternate;
+      }
+
+      /* =================== */
+      /* COOL GLITCH EFFECT  */
+      /* =================== */
+      .novel-card::before {
+          content: "";
+          position: absolute;
+          top: -10%;
+          left: -10%;
+          width: 120%;
+          height: 120%;
+          background: linear-gradient(45deg, transparent, rgba(255, 0, 43, 0.5), transparent);
+          opacity: 0;
+          transition: 0.3s;
+          z-index: 1;
+      }
+
+      .novel-card:hover::before {
+          opacity: 1;
+          transform: rotate(10deg);
+      }
+
+      /* ==================== */
+      /* BACKGROUND ANIMATION */
+      /* ==================== */
+      @keyframes floatingBackground {
+          0% {
+              background-position: 0 0;
+          }
+          100% {
+              background-position: 100% 100%;
+          }
+      }
+
+      .novels-section {
+          background: url('dystopian-bg.jpg') no-repeat center center/cover;
+          animation: floatingBackground 20s linear infinite alternate;
+      }
+
+      /* ================== */
+      /* CARD SHADOW EFFECT */
+      /* ================== */
+      @keyframes glowingShadow {
+          0% {
+              box-shadow: 0 0 10px rgba(255, 0, 43, 0.3);
+          }
+          50% {
+              box-shadow: 0 0 30px rgba(255, 0, 43, 0.6);
+          }
+          100% {
+              box-shadow: 0 0 10px rgba(255, 0, 43, 0.3);
+          }
+      }
+
+      .novel-card:hover {
+          animation: glowingShadow 1.5s infinite alternate;
+      }
+
+      /* ================= */
+      /* RESPONSIVE DESIGN */
+      /* ================= */
+      @media (max-width: 768px) {
+          .novels-section {
+              padding: 50px 20px;
+          }
+
+          .novel-card {
+              width: 90%;
+              height: auto;
+          }
+
+          .novel-info {
+              padding: 10px;
+          }
+
+          .novel-title {
+              font-size: 18px;
+          }
+
+          .novel-desc {
+              font-size: 12px;
+          }
+      }
+
+      /* ============================== */
+      /* TRIANGULAR WAVY EDGE AT BOTTOM */
+      /* ============================== */
+      .novels-section::after {
+          content: "";
+          position: absolute;
+          bottom: -10px;
+          left: 0;
+          width: 100%;
+          height: 50px;
+          background: linear-gradient(to right, #0a0a0a 25%, transparent 50%, #0a0a0a 75%);
+          clip-path: polygon(0% 100%, 10% 50%, 20% 100%, 30% 50%, 40% 100%, 50% 50%, 60% 100%, 70% 50%, 80% 100%, 90% 50%, 100% 100%);
+      }
+
+
+      /* Footer */
+      footer {
+          text-align: center;
+          padding: 20px;
+          background: var(--primary-color);
+          color: white;
+          margin-top: 50px;
+          font-size: 1.2em;
+      }
+      #particles-js {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          top: 0;
+          left: 0;
+          background: rgba(10, 10, 10, 0.8); 
+      }
+      .novels-section,
+      .hero-section {
+          position: relative;
+          z-index: 1;
+      }
+        /* Mobile Navbar */
+        .nav-links.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Menu Toggle Button */
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Fade-in Animation */
+        .hero, .novels-section, .about-section, .contact-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .hero.visible, .novels-section.visible, .about-section.visible, .contact-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Floating Animated Circles */
+        @keyframes floatingCircles {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .floating-circle {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 0, 43, 0.5);
+            border-radius: 50%;
+            animation: floatingCircles 3s infinite ease-in-out;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 30px;
+            height: 30px;
+            top: 50%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 50px;
+            height: 50px;
+            top: 70%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+        /* Hidden overlay that appears when the easter egg is triggered */
+        .hidden-easter-egg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ff002b;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            font-family: 'Courier New', monospace;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Glitch animation */
+        @keyframes glitch {
+            0% { transform: translate(0, 0); opacity: 1; }
+            20% { transform: translate(-3px, 3px); opacity: 0.8; }
+            40% { transform: translate(3px, -3px); opacity: 1; }
+            60% { transform: translate(-2px, 2px); opacity: 0.9; }
+            80% { transform: translate(2px, -2px); opacity: 1; }
+            100% { transform: translate(0, 0); opacity: 1; }
+        }
+
+        .glitch-active {
+            animation: glitch 0.2s infinite;
+        }
+
+        /* Background flashing effect */
+        @keyframes flash {
+            0% { background: rgba(255, 0, 43, 0.2); }
+            50% { background: rgba(0, 0, 0, 0.8); }
+            100% { background: rgba(255, 0, 43, 0.2); }
+        }
+
+        .flash-active {
+            animation: flash 0.3s infinite alternate;
+        }
+
+    </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+      <div class="logo">TESSETH</div>
+
+      <!-- Menu Items -->
+      <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="novel-container">Novels</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+  </nav>
+  
+
+    <!-- Hero Section -->
+  <section class="hero">
+    <div id="particles-js"></div>
+      <h1>Welcome to Tesseth</h1>
+      <p>your journey to the world of imagination starts here</p>
+      <a href="#" class="btn">Explore Now</a>
+      <div class="wave-container">
+          <div class="wave"></div>
+          <div class="wave wave2"></div>
+      </div>
+  </section>
+
+    <!-- Novels Section -->
+  <section class="novels-section">
+      <h2>Explore Our Novels</h2>
+      <div class="novel-container">
+          <div class="novel-card">
+              <img src="asscover.jpg" alt="Novel 1">
+              <div class="novel-info">
+                  <h3 class="novel-title">Tethered Recurrence</h3>
+                  <p class="novel-desc">A unified world government, seen through Margary's eyes.</p>
+                 <a href="https://docs.google.com/document/d/1WCHlmhR4aPGsSE_hrHsFD6bQyUl33frsuE5ld2ir4xY/edit?usp=sharing" class="read-btn" target="_blank">Read Now</a>
+              </div>
+          </div>
+
+          <div class="novel-card">
+              <img src="nigglave.png" alt="Novel 2">
+              <div class="novel-info">
+                  <h3 class="novel-title">Dual Lever</h3>
+                  <p class="novel-desc">A Sci-fi and fantasy world focuses on the life of the life.</p>
+                 <a href="https://docs.google.com/document/d/1n4PTjOlhDbLxG1RBpPak1CrLCBuOdJIKcRpG5SNyeeQ/edit?usp=sharing" class="read-btn" target="_blank">Read Now</a>
+              </div>
+          </div>
+
+          <div class="novel-card">
+              <img src="novel3.jpg" alt="Novel 3">
+              <div class="novel-info">
+                  <h3 class="novel-title">Dual Lever:- Loophole</h3>
+                  <p class="novel-desc">Sequel to Dual lever but on a greater scale.</p>
+                 <a href="index.html" class="read-btn" target="_blank">Read Now</a>
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 Tesseth archive by shoushuke | All Rights Reserved
+    </footer>
+  <script>
+      document.addEventListener("DOMContentLoaded", () => {
+          // Smooth Scrolling for Navbar Links
+          document.querySelectorAll('.nav-links a').forEach(link => {
+              link.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  const targetId = link.getAttribute('href').substring(1);
+                  const targetSection = document.getElementById(targetId);
+                  if (targetSection) {
+                      window.scrollTo({
+                          top: targetSection.offsetTop - 50, // Adjust for navbar height
+                          behavior: "smooth"
+                      });
+                  }
+              });
+          });
+
+          // Navbar Toggle for Mobile
+          const menuToggle = document.querySelector('.menu-toggle');
+          const navLinks = document.querySelector('.nav-links');
+
+          menuToggle.addEventListener('click', () => {
+              navLinks.classList.toggle('active');
+              menuToggle.classList.toggle('open');
+          });
+
+          // 3D Tilt Effect on Novel Cards
+          document.querySelectorAll('.novel-card').forEach(card => {
+              card.addEventListener('mousemove', (e) => {
+                  let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                  let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                  card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+              });
+
+              card.addEventListener('mouseleave', () => {
+                  card.style.transform = "rotateY(0deg) rotateX(0deg)";
+              });
+          });
+
+          // Fade-in Animation on Scroll
+          const fadeElements = document.querySelectorAll('.novels-section, .hero, .about-section, .contact-section');
+
+          const fadeInOnScroll = () => {
+              fadeElements.forEach(el => {
+                  const rect = el.getBoundingClientRect();
+                  if (rect.top < window.innerHeight - 100) {
+                      el.classList.add('visible');
+                  }
+              });
+          };
+
+          window.addEventListener('scroll', fadeInOnScroll);
+          fadeInOnScroll(); // Trigger on load in case elements are already in view
+      });
+
+
+</script>
+<script>
+    // Random Background Glow Effect on Novels Section
+    setInterval(() => {
+        let colors = ["#ff0000", "#0000ff", "#ffffff", "#ff0044"];
+        let randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.querySelector(".novels-section").style.boxShadow = `0px 0px 50px ${randomColor}`;
+    }, 1500);
+
+    // Animated Text Effect for Hero Title
+    document.addEventListener("DOMContentLoaded", function () {
+        let heroTitle = document.querySelector(".hero h1");
+        let text = heroTitle.innerText;
+        heroTitle.innerText = "";
+        let i = 0;
+
+        function typeEffect() {
+            if (i < text.length) {
+                heroTitle.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeEffect, 100);
+            }
+        }
+        typeEffect();
+    });
+
+    // Keyboard Glow Effect
+    document.addEventListener("keydown", function (event) {
+        let body = document.querySelector("body");
+        let colors = ["#ff0000", "#0000ff", "#ffffff", "#ff0044"];
+        let randomColor = colors[Math.floor(Math.random() * colors.length)];
+        body.style.boxShadow = `0px 0px 50px ${randomColor}`;
+        setTimeout(() => {
+            body.style.boxShadow = "none";
+        }, 500);
+    });
+    
+</script>
+<script>
+    // Flickering Neon Border Effect on Navbar
+    setInterval(() => {
+        let nav = document.querySelector("nav");
+        let neonColors = ["#ff0000", "#0000ff", "#ffffff", "#ff0044"];
+        let randomNeon = neonColors[Math.floor(Math.random() * neonColors.length)];
+        nav.style.boxShadow = `0px 0px 20px ${randomNeon}`;
+        setTimeout(() => {
+            nav.style.boxShadow = "none";
+        }, 300);
+    }, 800);
+
+    // Scroll Reveal Effect
+    document.addEventListener("DOMContentLoaded", function () {
+        let elements = document.querySelectorAll(".novel-card, .hero h1, .hero p, .hero .btn");
+
+        function reveal() {
+            let windowHeight = window.innerHeight;
+            elements.forEach(el => {
+                let elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    el.classList.add("visible");
+                } else {
+                    el.classList.remove("visible");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let secretCode = "khayelin";
+        let userInput = "";
+
+        // Create the hidden Easter egg message element
+        let easterEgg = document.createElement("div");
+        easterEgg.classList.add("hidden-easter-egg");
+        easterEgg.innerHTML = "The system is watching...";
+        document.body.appendChild(easterEgg);
+
+        document.addEventListener("keydown", function (event) {
+            userInput += event.key.toLowerCase();
+            if (!secretCode.startsWith(userInput)) {
+                userInput = event.key.toLowerCase(); // Reset if input doesn't match
+            }
+            if (userInput === secretCode) {
+                // Activate visual effects
+                easterEgg.style.opacity = "1";
+                document.body.classList.add("flash-active");
+
+                setTimeout(() => {
+                    easterEgg.style.opacity = "0";
+                    document.body.classList.remove("flash-active");
+                }, 3000); 
+
+                userInput = ""; 
+            }
+        });
+    });
+
+</script>
+
+  <!-- Load particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+
+</body>
+</html>
