@@ -720,6 +720,461 @@
         .flash-active {
             animation: flash 0.3s infinite alternate;
         }
+        /* FAQ Section Styling */
+        .faq-section {
+            width: 80%;
+            margin: 100px auto;
+            color: white;
+            background: linear-gradient(145deg, #111, #222);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 43, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fancy border effects */
+        .faq-section::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 43, 0.2);
+            z-index: -1;
+            filter: blur(30px);
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #ff002b, #007bff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* FAQ Container */
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Each FAQ Item */
+        .faq-item {
+            background: linear-gradient(135deg, #000, #222);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(255, 0, 43, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-item:hover {
+            background: linear-gradient(135deg, #222, #000);
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(255, 0, 43, 0.4);
+        }
+
+        /* Question Styling */
+        .faq-question {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Add icon */
+        .faq-question::after {
+            content: "+";
+            font-size: 2rem;
+            transition: transform 0.3s ease-in-out;
+            color: #ff002b;
+        }
+
+        /* Answer Styling */
+        .faq-answer {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        /* Open FAQ */
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        /* ABOUT SECTION STYLING */
+        .about-section {
+            position: relative;
+            padding: 100px 50px;
+            text-align: center;
+            background: linear-gradient(145deg, #111, #222);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Glitchy Heading */
+        .about-title {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+            animation: glitch 1s infinite;
+            text-shadow: 2px 2px 10px rgba(255, 0, 43, 0.7);
+        }
+
+        /* Container Layout */
+        .about-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* About Text */
+        .about-content {
+            flex: 1;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: left;
+            padding: 20px;
+            background: rgba(255, 0, 43, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 43, 0.3);
+            backdrop-filter: blur(5px);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s ease-in-out;
+        }
+
+        /* Image Section */
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 80%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 0, 43, 0.4);
+            transform: scale(0.8);
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+        }
+
+        /* Parallax & Hover Effects */
+        .about-image img:hover {
+            transform: scale(1);
+            box-shadow: 0 15px 40px rgba(255, 0, 43, 0.6);
+        }
+
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% { text-shadow: 4px 4px rgba(255, 0, 43, 0.6); }
+            50% { text-shadow: -4px -4px rgba(255, 0, 43, 0.6); }
+            100% { text-shadow: 4px 4px rgba(255, 0, 43, 0.6); }
+        }
+
+        /* Fade-in effect */
+        .about-section.show .about-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .about-container {
+                flex-direction: column;
+            }
+
+            .about-content {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                font-size: 1rem;
+            }
+        }
+        /* Gallery Section */
+        .gallery-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(145deg, #111, #222);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Section Title */
+        .gallery-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ff002b;
+            text-shadow: 0 0 15px rgba(255, 0, 43, 0.8);
+            animation: glowText 1.5s infinite alternate;
+        }
+
+        /* Neon Glow Animation for Title */
+        @keyframes glowText {
+            0% { text-shadow: 0 0 5px rgba(255, 0, 43, 0.5); }
+            100% { text-shadow: 0 0 15px rgba(255, 0, 43, 1); }
+        }
+
+        /* Gallery Container */
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Gallery Card */
+        .gallery-card {
+            position: relative;
+            width: 280px;
+            height: 380px;
+            background: linear-gradient(145deg, #222, #000);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 0, 43, 0.3);
+            cursor: pointer;
+            transition: transform 0.4s ease-in-out;
+            border: 2px solid transparent;
+        }
+
+        /* Neon Flickering Border */
+        .gallery-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 15px;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, red, blue, white);
+            filter: blur(10px);
+            opacity: 0.6;
+            z-index: -1;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        /* Flickering Effect */
+        @keyframes flicker {
+            0% { opacity: 0.3; filter: blur(10px); }
+            50% { opacity: 0.7; filter: blur(15px); }
+            100% { opacity: 0.3; filter: blur(10px); }
+        }
+
+        /* Hover Effect */
+        .gallery-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 0, 43, 0.8);
+        }
+
+        /* Image */
+        .gallery-card img {
+            width: 100%;
+            height: 75%;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hover Effect on Image */
+        .gallery-card:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Gallery Info */
+        .gallery-info {
+            padding: 15px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        /* Hover Effect for Info */
+        .gallery-card:hover .gallery-info {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        /* Title Inside Card */
+        .gallery-info h3 {
+            font-size: 1.4em;
+            color: #ff002b;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 0, 43, 0.8);
+        }
+
+        /* Description */
+        .gallery-info p {
+            font-size: 1em;
+            color: #ddd;
+            letter-spacing: 1px;
+        }
+
+        /* Shimmering Text Animation */
+        @keyframes shimmer {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        .gallery-info h3, .gallery-info p {
+            animation: shimmer 2s infinite;
+        }
+        /* Comments Section */
+        .comments-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(145deg, #111, #222);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Section Title */
+        .comments-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ff002b;
+            text-shadow: 0 0 15px rgba(255, 0, 43, 0.8);
+            animation: glowText 1.5s infinite alternate;
+        }
+
+        /* Glowing Text Effect */
+        @keyframes glowText {
+            0% { text-shadow: 0 0 5px rgba(255, 0, 43, 0.5); }
+            100% { text-shadow: 0 0 15px rgba(255, 0, 43, 1); }
+        }
+
+        /* Cusdis Styling */
+        #cusdis_thread {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 43, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hover Effect */
+        #cusdis_thread:hover {
+            transform: scale(1.02);
+        }
+        /* Floating Icons Container */
+        .floating-icons {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        /* Base Icon Styling */
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 0, 43, 0.5);
+            font-size: 1.8em;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Neon Glow Effects */
+        .social-icon::before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 0, 43, 0.7) 10%, transparent 70%);
+            top: -50%;
+            left: -50%;
+            transform: rotate(30deg);
+            transition: 0.4s ease-in-out;
+        }
+
+        /* Hover Effects */
+        .social-icon:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(255, 0, 43, 1);
+        }
+
+        /* Instagram */
+        .instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: #fff;
+        }
+
+        /* Reddit */
+        .reddit:hover {
+            background: #ff4500;
+            color: #fff;
+        }
+
+        /* Discord */
+        .discord:hover {
+            background: #5865f2;
+            color: #fff;
+        }
+
+        /* Twitter (X) */
+        .twitter:hover {
+            background: #1da1f2;
+            color: #fff;
+        }
+
+
+
 
     </style>
 </head>
@@ -758,6 +1213,45 @@
       </div>
   </section>
 
+    <!-- social hadnles -->
+    <div class="floating-icons">
+        <a href="https://instagram.com" class="social-icon instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://reddit.com" class="social-icon reddit" target="_blank">
+            <i class="fab fa-reddit-alien"></i>
+        </a>
+        <a href="https://discord.com" class="social-icon discord" target="_blank">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://twitter.com" class="social-icon twitter" target="_blank">
+            <i class="fab fa-x-twitter"></i>  
+        </a>
+    </div>
+
+
+    <!--About Section -->
+    <!-- currently ai generated about, baadmei likhdunga -->
+    <section class="about-section">
+        <h2 class="about-title">About Tesseth</h2>
+        <div class="about-container">
+            <div class="about-content">
+                <p>
+                    Tesseth is not just a collection of novels; it's an experience. A place where dystopian futures, mysterious worlds, and deep narratives come to life.
+                    Every story is crafted to pull you into an alternate reality, where the lines between fiction and reality blur.
+                </p>
+                <p>
+                    Whether you seek adventure, mystery, or a journey into the unknown, Tesseth offers a gateway to imagination. 
+                    Every novel here is more than just words—it's a world waiting to be explored.
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="T.png" alt="About Tesseth">
+            </div>
+        </div>
+    </section>
+
+
     <!-- Novels Section -->
   <section class="novels-section">
       <h2>Explore Our Novels</h2>
@@ -791,15 +1285,118 @@
       </div>
   </section>
 
+    <!--Gallery section -->
+    <section class="gallery-section">
+        <h2>Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-card">
+                <img src="character1.jpg" alt="Character 1">
+                <div class="gallery-info">
+                    <h3>Margary Skochventhor</h3>
+                    <p>The mc of Tethered Recurrence</p>
+                </div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="character2.jpg" alt="Character 2">
+                <div class="gallery-info">
+                    <h3>shou</h3>
+                    <p>The mc of Dual Lever </p>
+                </div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="character3.jpg" alt="Character 3">
+                <div class="gallery-info">
+                    <h3>unkown char - yet to reveal</h3>
+                    <p>The mc of If I was me</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">What is Tesseth?</div>
+                <div class="faq-answer">Tesseth is collection of a novels written by shoushuke, philo and arisu. </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How can I read the novels?</div>
+                <div class="faq-answer">You can explore our novels section and click on the "Read Now" button to access them. you can also buy the paperpack or read them at amazon kindle</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Are new chapters or volumes added frequently?</div>
+                <div class="faq-answer">Yes! We keep expanding our collection with fresh, intriguing concepts.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I submit my own stories?</div>
+                <div class="faq-answer">At the moment, we are not accepting external submissions, but stay tuned for future updates!</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- cusdis my lobh -->
+    <section class="comments-section">
+        <h2>Join the Discussion</h2>
+        <div id="cusdis_thread"
+            data-host="https://cusdis.com"
+            data-app-id="e10f6f1e-d9a0-4d0a-9e9d-6e17f108dabd"
+            data-page-id="page-unique-id"
+            data-page-url="https://yourwebsite.com/current-page"
+            data-page-title="Page Title"
+            data-theme="dark">
+        </div>
+    </section>
+
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+
+
 
 
     <!-- Footer -->
     <footer>
         &copy; 2025 Tesseth archive by shoushuke | All Rights Reserved
     </footer>
+    <script>
+        document.querySelectorAll('.gallery-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('img').style.transform = 'scale(1.1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('img').style.transform = 'scale(1)';
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const aboutSection = document.querySelector(".about-section");
+
+            function revealAboutSection() {
+                const sectionTop = aboutSection.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+
+                if (sectionTop < screenPosition) {
+                    aboutSection.classList.add("show");
+                }
+            }
+
+            window.addEventListener("scroll", revealAboutSection);
+            revealAboutSection(); 
+
+            // Console Easter Egg
+            console.log("%c Welcome to Tesseth!", "color: red; font-size: 20px; font-weight: bold; text-shadow: 2px 2px 10px #ff002b;");
+        });
+    </script>
   <script>
       document.addEventListener("DOMContentLoaded", () => {
-          // Smooth Scrolling for Navbar Links
           document.querySelectorAll('.nav-links a').forEach(link => {
               link.addEventListener('click', (e) => {
                   e.preventDefault();
@@ -849,7 +1446,7 @@
           };
 
           window.addEventListener('scroll', fadeInOnScroll);
-          fadeInOnScroll(); // Trigger on load in case elements are already in view
+          fadeInOnScroll(); 
       });
 
 
@@ -919,7 +1516,7 @@
             });
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Initial check
+        reveal(); 
     });
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -935,10 +1532,9 @@
         document.addEventListener("keydown", function (event) {
             userInput += event.key.toLowerCase();
             if (!secretCode.startsWith(userInput)) {
-                userInput = event.key.toLowerCase(); // Reset if input doesn't match
+                userInput = event.key.toLowerCase(); 
             }
             if (userInput === secretCode) {
-                // Activate visual effects
                 easterEgg.style.opacity = "1";
                 document.body.classList.add("flash-active");
 
@@ -949,6 +1545,18 @@
 
                 userInput = ""; 
             }
+        });
+    });
+
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach(item => {
+            item.addEventListener("click", () => {
+                item.classList.toggle("open");
+            });
         });
     });
 
