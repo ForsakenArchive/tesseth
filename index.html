@@ -32,6 +32,41 @@
           overflow-x: hidden;
           transition: box-shadow 0.3s ease-in-out;
       }
+        .glow-edge-top, .glow-edge-bottom {
+            content: "";
+            display: block;
+            height: 10px;
+            width: 100%;
+            background: linear-gradient(90deg,
+                red,
+                orange,
+                yellow,
+                green,
+                cyan,
+                blue,
+                violet,
+                red);
+            background-size: 400% 400%;
+            animation: glowEdgeAnim 6s linear infinite;
+            filter: blur(5px);
+            z-index: 1;
+            position: absolute;
+            left: 0;
+        }
+
+        .glow-edge-top {
+            top: 0;
+        }
+
+        .glow-edge-bottom {
+            bottom: 0;
+        }
+
+        @keyframes glowEdgeAnim {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
 
       /* Navbar */
       .navbar {
@@ -1310,8 +1345,149 @@
           text-shadow: 0 0 10px #ff002b, 0 0 20px #ff002b;
         }
 
+        /*newsletter*/
+        .newsletter-section {
+          padding: 80px 20px;
+          background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+          color: #fff;
+          text-align: center;
+          position: relative;
+          overflow: visible;
+          z-index: 1;
+        }
 
+        .newsletter-section h2 {
+          font-size: 2.8em;
+          color: #ff002b;
+          text-shadow: 0 0 10px #ff002b, 0 0 20px #ff002b;
+          margin-bottom: 40px;
+          position: relative;
+          animation: glitch-text 3s infinite linear;
+        }
+        .newsletter-section::before,
+        .newsletter-section::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg,
+                red,
+                orange,
+                yellow,
+                green,
+                cyan,
+                blue,
+                violet,
+                red);
+            background-size: 400% 400%;
+            animation: glowEdgeAnim 6s linear infinite;
+            filter: blur(3px);
+            z-index: -1; 
+        }
 
+        .newsletter-section::before {
+            top: 0;
+        }
+
+        .newsletter-section::after {
+            bottom: 0;
+        }
+
+        @keyframes glowEdgeAnim {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .news-slider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          max-width: 900px;
+          margin: 0 auto;
+          position: relative;
+        }
+
+        .news-wrapper {
+          position: relative;
+          width: 600px;
+          height: 100px;
+          overflow: hidden;
+          border-radius: 10px;
+          border: 2px solid #ff002b;
+          box-shadow: 0 0 20px #ff002b88, 0 0 30px #ff002b44;
+          background: rgba(0, 0, 0, 0.8);
+        }
+
+        .news-item {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          font-size: 1.3em;
+          font-weight: 600;
+          color: #fff;
+          padding: 20px;
+          display: none;
+          justify-content: center;
+          align-items: center;
+          text-shadow: 0 0 5px #ff002b, 0 0 10px #fff;
+          transition: 0.5s ease-in-out;
+        }
+
+        .news-item.active {
+          display: flex;
+          animation: slideIn 0.6s ease-in-out;
+        }
+
+        @keyframes slideIn {
+          from {
+            transform: translateX(50%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0%);
+            opacity: 1;
+          }
+        }
+
+        .nav-btn {
+          background: transparent;
+          color: #fff;
+          font-size: 2em;
+          border: none;
+          cursor: pointer;
+          padding: 10px;
+          transition: 0.3s ease;
+          z-index: 2;
+          text-shadow: 0 0 5px #ff002b, 0 0 10px #ff002b;
+        }
+
+        .nav-btn:hover {
+          color: #ff002b;
+          transform: scale(1.2);
+          text-shadow: 0 0 10px #ff002b, 0 0 20px #ff002b;
+        }
+
+        /* Glitch text animation */
+        @keyframes glitch-text {
+          0% {
+            text-shadow: 0 0 5px #ff002b, 0 0 10px #fff;
+          }
+          25% {
+            text-shadow: 2px 0 #ff002b, -2px 0 #00ffee;
+          }
+          50% {
+            text-shadow: -2px 0 #ff002b, 2px 0 #00ffee;
+          }
+          75% {
+            text-shadow: 0 0 10px #fff, 0 0 15px #ff002b;
+          }
+          100% {
+            text-shadow: 0 0 5px #ff002b, 0 0 10px #fff;
+          }
+        }
+        
 
 
     </style>
@@ -1422,6 +1598,22 @@
       </div>
   </section>
 
+    <!-- newsletter -->
+    <section class="newsletter-section">
+      <h2>Latest News</h2>
+      <div class="news-slider">
+        <button class="nav-btn left-btn">&lt;</button>
+
+        <div class="news-wrapper">
+          <div class="news-item active">Chapter 3 of Thetered Recurrence will be updated soon</div>
+          <div class="news-item">the feature of fanart submission in this website will be available soon</div>
+          <div class="news-item">The work on Dual Lever is now paused and is on a long break</div>
+        </div>
+
+        <button class="nav-btn right-btn">&gt;</button>
+      </div>
+    </section>
+
     <!--Gallery section -->
     <section class="gallery-section">
         <h2>Gallery</h2>
@@ -1508,10 +1700,6 @@
         </p>
       </div>
     </section>
-
-
-
-
 
 
     <!-- Footer -->
@@ -1604,6 +1792,36 @@
 
 
 </script>
+    
+    <script>
+      const newsItems = document.querySelectorAll('.news-item');
+      const leftBtn = document.querySelector('.left-btn');
+      const rightBtn = document.querySelector('.right-btn');
+      let currentIndex = 0;
+
+      function showNews(index) {
+        newsItems.forEach((item, i) => {
+          item.classList.remove('active');
+          if (i === index) item.classList.add('active');
+        });
+      }
+
+      leftBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + newsItems.length) % newsItems.length;
+        showNews(currentIndex);
+      });
+
+      rightBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % newsItems.length;
+        showNews(currentIndex);
+      });
+
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % newsItems.length;
+        showNews(currentIndex);
+      }, 10000);
+    </script>
+
 <script>
     // Random Background Glow Effect on Novels Section
     setInterval(() => {
